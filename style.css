@@ -1,0 +1,671 @@
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    color: #111;
+}
+
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid #173e5d;
+    outline-offset: 4px;
+}
+
+
+   /*
+     HOME PAGE
+   */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 2rem;
+}
+
+nav a {
+    color: #111;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: .1px;
+    text-decoration: none;
+    transition: color .2s ease;
+}
+
+nav ul {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-right: 70px;
+    list-style: none;
+}
+
+.upper-main {
+    margin-top: -50px;
+    padding: 2rem 4rem;
+}
+
+.upper-main h1 {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 150px 50px 30px 0;
+    color: #123b5d;
+    font-family: "Inter", sans-serif;
+    font-size: 180px;
+    font-weight: 700;
+    line-height: .8;
+    letter-spacing: -.02em;
+}
+
+.upper-main h4 {
+    margin-top: -60px;
+    padding: 15px 0 30px;
+    font-size: 48px;
+    font-weight: 500;
+    letter-spacing: -.02em;
+}
+
+/* More button  */
+.btn-23,
+.btn-23 * {
+    box-sizing: border-box;
+}
+
+.btn-23 {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    padding: 1.4rem 4rem;
+    border: 2px solid #111;
+    border-radius: 99rem;
+    background: #111;
+    color: #fff;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1.5;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.btn-23:disabled {
+    cursor: default;
+}
+
+.btn-23 span {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    transition: opacity .2s ease;
+}
+
+.btn-23 .marquee {
+    --text-gap: 5em;
+    --start-position: 0em;
+    --end-position: 5em;
+    position: relative;
+    opacity: 0;
+    text-shadow: #fff var(--text-gap) 0,
+        #fff calc(var(--text-gap) * -1) 0,
+        #fff calc(var(--text-gap) * -2) 0;
+    animation: marquee 1s linear infinite paused;
+}
+
+.btn-23:hover .marquee {
+    opacity: 1;
+    animation-play-state: running;
+}
+
+.btn-23:hover .text {
+    opacity: 0;
+}
+
+@keyframes marquee {
+    from { transform: translateX(var(--start-position)); }
+    to { transform: translateX(var(--end-position)); }
+}
+
+.lower-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    color: #000;
+    text-align: center;
+}
+
+.LM1 { margin-top: 100px; }
+.LM2,
+.LM3 { margin-top: 200px; }
+
+.lower-main h1 {
+    padding: 15px 0 30px;
+    font-size: 128px;
+    font-weight: 700;
+    letter-spacing: -.05em;
+}
+
+.lower-main p {
+    padding: 15px 170px;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -.05em;
+}
+
+
+/*  CAREER PAGE */
+
+.career-chooser-body {
+    min-height: 100vh;
+    background: #fdfcf9;
+}
+
+.career-chooser {
+    width: min(100% - 2.5rem, 1500px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 2rem 0 5rem;
+}
+
+.chooser-home {
+    display: inline-block;
+    margin-bottom: 2rem;
+    color: #111;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/*  Career text & image  */
+.career-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    margin-bottom: 4rem;
+}
+
+.career-hero-content h1 {
+    margin-bottom: 1.5rem;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: .95;
+}
+
+.career-hero-content .field-copy,
+.career-hero-content .sub-heading {
+    max-width: 42rem;
+    font-size: clamp(1rem, 1.7vw, 1.5rem);
+    line-height: 1.4;
+}
+
+.career-hero-content .sub-heading {
+    margin-top: 2rem;
+    font-weight: 600;
+}
+
+.career-hero > .field-copy img {
+    display: block;
+    width: 100%;
+    max-height: 42rem;
+    object-fit: cover;
+}
+
+/*  field  */
+.career-field-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.career-field-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+    min-height: clamp(5rem, 12vh, 8rem);
+    border-top: 1px solid #111;
+    color: #080808;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(2rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .2s ease, background-color .2s ease;
+}
+
+.career-field-buttons a:last-child {
+    border-bottom: 1px solid #111;
+}
+
+.career-field-buttons a span {
+    font-size: .5em;
+}
+
+.career-field-buttons a:hover {
+    background: #f2f0eb;
+    color: #173e5d;
+}
+
+
+/*  FIELD PAGES  */
+
+.field-detail-page {
+    min-height: 100vh;
+    background: #fdfcf9;
+    color: #090909;
+}
+
+.field-detail-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: min(85.4%, 1500px);
+    min-height: 4.5rem;
+    margin: 0 auto;
+    padding: .7rem 0;
+}
+
+.field-detail-nav a {
+    color: #111;
+    font-size: .95rem;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.field-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 0 7.3vw 2.5rem;
+}
+
+.field-top {
+    width: min(100%, 1500px);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding-bottom: clamp(4rem, 9vw, 8rem);
+}
+
+.field-title {
+    margin: clamp(1.5rem, 4vw, 4rem) 0 1.2rem -.035em;
+    color: #080808;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(4.4rem, 12vw, 11rem);
+    font-weight: 400;
+    line-height: .92;
+    letter-spacing: -.055em;
+    text-transform: uppercase;
+}
+
+/* field  description  */
+.field-hero {
+    display: grid;
+    grid-template-columns: minmax(0, .95fr) minmax(18rem, 1.05fr);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 6rem);
+    margin-top: 1.5rem;
+}
+
+.field-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(2rem, 6vw, 5rem);
+    padding: 1rem 0;
+}
+
+.field-copy p {
+    max-width: 42rem;
+    font-size: clamp(1rem, 1.8vw, 1.65rem);
+    line-height: 1.25;
+}
+
+.field-hero img {
+    display: block;
+    width: 100%;
+    height: clamp(21rem, 43vw, 43rem);
+    border-radius: 1.25rem;
+    object-fit: cover;
+}
+
+/* Button  scrolls down  */
+.discover-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    min-height: 4.6rem;
+    padding: .9rem 2.5rem;
+    border-radius: 99rem;
+    background: #c9c9c9;
+    color: #111;
+    font-size: clamp(1.1rem, 2vw, 1.8rem);
+    text-decoration: none;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.discover-link:hover {
+    transform: translateY(-2px);
+    background: #b5b5b5;
+}
+
+.discover-link span {
+    font-size: 1.3em;
+}
+
+/* Exam names links  */
+.exam-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: min(100%, 1500px);
+    margin: clamp(2.5rem, 6vw, 5rem) auto 0;
+    padding-bottom: 5rem;
+    scroll-margin-top: 2rem;
+}
+
+.exam-options a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem;
+    min-height: clamp(4.5rem, 8vw, 6.5rem);
+    border-top: 1px solid #111;
+    color: #080808;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(1.7rem, 5vw, 3.9rem);
+    font-weight: 700;
+    line-height: 1.05;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .2s ease, background-color .2s ease;
+}
+
+.exam-options a:last-child {
+    border-bottom: 1px solid #111;
+}
+
+.exam-options a span {
+    font-size: .5em;
+}
+
+.exam-options a:hover {
+    background: #f2f0eb;
+    color: #173e5d;
+}
+
+
+/* EXAM NAME PAGE */
+   
+
+.exam-name-body {
+    min-height: 100vh;
+    background: #fff;
+    color: #080808;
+}
+
+.exam-name-page {
+    display: grid;
+    min-height: 100vh;
+    padding: 2rem;
+    place-items: center;
+}
+
+.exam-name-page h1 {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(3rem, 12vw, 10rem);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -.05em;
+    text-align: center;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page placeholder content */
+.page-content {
+  padding: 100px 24px;
+  text-align: center;
+}
+
+.page-content h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.page-content p {
+  color: #777777;
+  font-size: 1.05rem;
+}
+
+/* --- FOOTER MAIN CONTAINER --- */
+.interactive-footer {
+  position: relative;
+  width: 100%;
+  height: 580px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #000000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  border-top: 1px solid #1a1a1a;
+}
+
+/* Brand Layer (Static behind physics playground) */
+.footer-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 0 20px;
+  pointer-events: none; /* Lets clicks pass through to tags & shapes */
+}
+
+.footer-brand {
+  font-size: clamp(3rem, 9vw, 6.8rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  text-transform: lowercase;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.footer-tagline {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: #8f8f8f;
+  max-width: 520px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  color: #555555;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+/* --- MATTER.JS INTERACTIVE CONTAINER --- */
+.object-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* Common style for all physics elements */
+.physics-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: grab;
+  will-change: transform;
+  pointer-events: auto;
+}
+
+.physics-item:active {
+  cursor: grabbing;
+}
+
+/* --- 1. TAG PILLS --- */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 34px;
+  background-color: #ffffff;
+  color: #000000;
+  border-radius: 9999px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
+}
+
+/* --- 2. GEOMETRIC SHAPES --- */
+
+/* Circles */
+.shape-circle-lg {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.shape-circle-md {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.shape-circle-sm {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+.shape-dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+
+/* Rings & Donuts */
+.shape-ring-lg {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  border: 10px solid #ffffff;
+  background-color: transparent;
+}
+
+.shape-ring-md {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  border: 8px solid #ffffff;
+  background-color: transparent;
+}
+
+.shape-donut {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 14px solid #ffffff;
+  background-color: transparent;
+}
+
+/* Squares */
+.shape-square-lg {
+  width: 76px;
+  height: 76px;
+  border-radius: 16px;
+  background-color: #ffffff;
+}
+
+.shape-square-md {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background-color: #ffffff;
+}
+
+.shape-square-sm {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: #ffffff;
+}
+
+/* Triangles */
+.shape-triangle {
+  width: 74px;
+  height: 74px;
+}
+
+.shape-triangle-sm {
+  width: 52px;
+  height: 52px;
+}
+
+.shape-triangle svg,
+.shape-triangle-sm svg,
+.shape-cross svg,
+.shape-cross-sm svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+/* Crosses / Pluses */
+.shape-cross {
+  width: 74px;
+  height: 74px;
+}
+
+.shape-cross-sm {
+  width: 50px;
+  height: 50px;
+}
+
+/* Responsive Scaling */
+@media (max-width: 640px) {
+  .interactive-footer {
+    height: 500px;
+  }
+  .tag-pill {
+    padding: 10px 22px;
+    font-size: 0.85rem;
+  }
+  .shape-circle-lg, .shape-ring-lg, .shape-square-lg, .shape-triangle, .shape-cross {
+    transform: scale(0.8);
+  }
+}
