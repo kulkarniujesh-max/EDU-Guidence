@@ -23,7 +23,7 @@
 
 <body>
   <main data-scroll-container>
-    <div class="Home-Page">
+    <div class="Home-Page" id="home">
       <nav>
         <div class="logo">
           <img src="Logo.png" alt="Logo" />
@@ -68,11 +68,13 @@
       <div class="lower-">
         <ul>
           <li>
-            <i class="fa-solid fa-house"></i>
+            <a class="home-top-link" href="index.html#home" aria-label="Return to the top of the home page">
+              <i class="fa-solid fa-house" aria-hidden="true"></i>
+              <span class="visually-hidden">Home</span>
+            </a>
           </li>
           <li>
-            About US
-            <i class="fa-solid fa-arrow-up-long"></i>
+            <a class="about-page-link" href="about.html">About Us <span aria-hidden="true">↑</span></a>
           </li>
         </ul>
       </div>
