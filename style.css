@@ -514,7 +514,8 @@ nav ul {
   height: 100%;
   z-index: 2;
   overflow: hidden;
-  touch-action: none;
+  /* Keep vertical page scrolling available on touch devices over the physics layer. */
+  touch-action: pan-y;
 }
 
 /* Common style for all physics elements */

@@ -219,5 +219,9 @@ document.addEventListener("DOMContentLoaded", () => {
       x: bounds.width + wallThickness / 2,
       y: bounds.height / 2
     });
+    Matter.Body.setPosition(leftWall, {
+      x: -wallThickness / 2,
+      y: bounds.height / 2
+    });
   });
 });
