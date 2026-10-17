@@ -32,6 +32,12 @@
           <li><a href="career.html">Career</a></li>
           <li><a href="chatbot.html">AI Chatbot</a></li>
         </ul>
+        <div class="nav-actions">
+          <a href="login.html" data-auth-link="login">Login</a>
+          <a href="signup.html" class="signup-button" data-auth-link="signup">Sign Up</a>
+          <span data-auth-user="profile" hidden></span>
+          <a href="index.html" data-auth-action="logout" hidden>Logout</a>
+        </div>
       </nav>
       <div class="main-content">
         <div class="upper-main">
@@ -158,6 +164,7 @@
   </main>
 
   <script src="main.js"></script>
+  <script src="auth.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
   <script src="https://kit.fontawesome.com/d0a2940e4c.js" crossorigin="anonymous"></script>
   <script>

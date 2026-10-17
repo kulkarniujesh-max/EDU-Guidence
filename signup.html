@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | Eduguidance</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body class="auth-page">
+    <nav class="auth-nav">
+      <div class="logo">
+        <a href="index.html"><img src="Logo.png" alt="Eduguidance logo" /></a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="career.html">Career</a></li>
+        <li><a href="chatbot.html">AI Chatbot</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" data-auth-link="login">Login</a>
+        <a href="signup.html" class="signup-button" data-auth-link="signup">Sign Up</a>
+        <span data-auth-user="profile" hidden></span>
+        <a href="index.html" data-auth-action="logout" hidden>Logout</a>
+      </div>
+    </nav>
+
+    <main class="auth-shell">
+      <section class="auth-card">
+        <div class="auth-copy">
+          <p class="eyebrow">Start your journey</p>
+          <h1>Create your account</h1>
+          <p>Build your future with personalized guidance, smart recommendations, and career planning tools.</p>
+        </div>
+
+        <form id="signupForm" class="auth-form" method="post">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" maxlength="100" placeholder="Your full name" required />
+
+          <label for="signup-email">Email</label>
+          <input id="signup-email" name="email" type="email" maxlength="254" placeholder="you@example.com" required />
+
+          <label for="signup-password">Password</label>
+          <input id="signup-password" name="password" type="password" minlength="8" placeholder="Create a password" required />
+
+          <button type="submit">Create account</button>
+
+          <div id="authStatus" class="auth-status" aria-live="polite"></div>
+
+          <p class="auth-switch">
+            Already have an account?
+            <a href="login.html">Login</a>
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <script src="auth.js"></script>
+  </body>
+</html>
