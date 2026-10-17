@@ -773,3 +773,58 @@ nav ul {
     transform: scale(0.8);
   }
 }
+.exam-name-body { min-height:100vh; background:#faf9f6; color:#111; font-family:Inter,sans-serif; }
+.exam-detail-nav { display:flex; justify-content:space-between; align-items:center; width:min(100% - 2.5rem,1200px); min-height:76px; margin:auto; }
+.exam-detail-nav a { color:#171717; font-size:.95rem; font-weight:600; text-decoration:none; }
+.exam-detail-nav a:hover { color:#315d7d; }
+.exam-detail-nav .page-home-link { position:static; }
+.exam-detail-page { width:min(100% - 2.5rem,980px); margin:clamp(2.5rem,8vw,7rem) auto 5rem; }
+.exam-eyebrow { margin-bottom:1rem; color:#496478; font-size:.82rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+.exam-detail-page h1 { margin:0 0 1.25rem; font-family:Georgia,"Times New Roman",serif; font-size:clamp(4rem,12vw,9rem); font-weight:400; line-height:.95; letter-spacing:-.06em; }
+.exam-summary { max-width:55rem; color:#3d4348; font-size:clamp(1.1rem,2.1vw,1.45rem); line-height:1.65; }
+.exam-next-steps { margin-top:clamp(3rem,8vw,6rem); }
+.exam-next-steps h2 { margin-bottom:1rem; font-size:clamp(1.7rem,4vw,2.5rem); letter-spacing:-.04em; }
+.exam-next-steps ol { border-top:1px solid #222; list-style:none; }
+.exam-next-steps li { display:grid; grid-template-columns:4rem 1fr; gap:1rem; padding:1.5rem .5rem; border-bottom:1px solid #d3d0ca; }
+.exam-next-steps li > span { color:#607688; font-size:.9rem; font-weight:700; }
+.exam-next-steps strong { font-size:1.08rem; }
+.exam-next-steps p { margin-top:.35rem; color:#596169; line-height:1.55; }
+.exam-back-link { display:inline-flex; gap:.7rem; margin-top:2rem; padding:.9rem 1.3rem; border-radius:999px; background:#111; color:#fff; font-weight:600; text-decoration:none; }
+.exam-back-link:hover { background:#315d7d; }
+.exam-detail-nav a:focus-visible,.exam-back-link:focus-visible { outline:3px solid #866b47; outline-offset:4px; }
+.career-field-buttons a:focus-visible { position:relative; z-index:1; outline:3px solid #866b47; outline-offset:-5px; }
+.auth-form button.password-toggle,
+.auth-form button.auth-reset { align-self:flex-start; margin:0; padding:.25rem 0; border:0; background:transparent; color:#123b5d; font-size:.9rem; font-weight:600; }
+.auth-form button.password-toggle:hover,
+.auth-form button.auth-reset:hover { background:transparent; color:#315d7d; text-decoration:underline; }
+.chatbot-page { min-height:100vh; background:#faf9f6; }
+.chatbot-page .page-home-link { position:fixed; }
+@media(max-width:760px) {
+  .career-chooser { width:calc(100% - 2rem); }
+  .career-hero { grid-template-columns:1fr; gap:1.5rem; }
+  .career-hero > .field-copy img { max-height:22rem; object-fit:cover; }
+  .career-field-buttons a { min-height:4.5rem; }
+  .field-detail-nav { width:calc(100% - 2rem); }
+  .field-page { padding-right:1rem; padding-left:1rem; }
+  .field-top { min-height:auto; }
+  .field-hero { grid-template-columns:1fr; gap:1rem; }
+  .field-copy { gap:1.5rem; }
+  .field-hero img { height:clamp(16rem,65vw,26rem); }
+  .exam-options { margin-top:2.5rem; }
+  nav { flex-wrap:wrap; gap:.75rem; padding:1rem; }
+  nav ul { gap:1rem; margin:0; }
+  nav a { font-size:1rem; }
+  .upper-main { margin-top:0; padding:1rem 1.25rem; }
+  .upper-main h1 { padding:5rem 0 1rem; font-size:clamp(3.5rem,17vw,7rem); line-height:.88; }
+  .upper-main h4 { margin-top:0; font-size:clamp(1.5rem,7vw,2.5rem); }
+  .btn-23 { padding:1rem 2.5rem; font-size:1.5rem; }
+  .lower-main { margin-top:4rem; padding:0 1.25rem; }
+  .LM1,.LM2,.LM3 { margin-top:3rem; }
+  .lower-main h1 { font-size:clamp(2.5rem,11vw,4.5rem); }
+  .lower-main p { padding:1rem 0; font-size:1.1rem; letter-spacing:0; line-height:1.55; }
+  .interactive-footer { height:460px; }
+  .auth-nav { justify-content:space-between; }
+  .auth-nav .nav-links { width:auto; }
+  .auth-nav .nav-actions { width:auto; }
+}
+@media(max-width:600px) { .exam-detail-nav { width:calc(100% - 2rem); } .exam-detail-page { width:calc(100% - 2rem); } .exam-next-steps li { grid-template-columns:2.5rem 1fr; } }

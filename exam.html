@@ -3,16 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exam | Education Guidance</title>
+  <meta name="description" content="Explore an entrance exam and find clear next steps for your career path." />
+  <title>Exam details | EduGuidance</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 </head>
 <body class="exam-name-body">
-  <a class="page-home-link" href="index.html#home" aria-label="Return to the top of the home page">← Home</a>
-  <main class="exam-name-page">
-    <h1 id="exam-title">Exam</h1>
+  <header class="exam-detail-nav" aria-label="Page navigation">
+    <a class="page-home-link" href="index.html#home">← Home</a>
+    <a id="careerLink" href="career.html">← All career paths</a>
+  </header>
+  <main class="exam-detail-page">
+    <p class="exam-eyebrow" id="exam-field">Career pathway</p>
+    <h1 id="exam-title">Exam details</h1>
+    <p class="exam-summary" id="exam-summary"></p>
+    <section class="exam-next-steps" aria-labelledby="steps-title">
+      <h2 id="steps-title">Your next steps</h2>
+      <ol>
+        <li><span>01</span><div><strong>Confirm eligibility</strong><p>Check the latest eligibility rules on the exam authority’s official website.</p></div></li>
+        <li><span>02</span><div><strong>Review the exam pattern</strong><p>Look at the current syllabus, format, and selection stages before planning preparation.</p></div></li>
+        <li><span>03</span><div><strong>Track the application window</strong><p>Use the official notification for current dates, fees, and application instructions.</p></div></li>
+      </ol>
+    </section>
+    <a class="exam-back-link" id="fieldLink" href="career.html">Explore this career path <span aria-hidden="true">↗</span></a>
   </main>
   <script src="exam.js"></script>
 </body>

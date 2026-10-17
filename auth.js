@@ -4,6 +4,7 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
   GoogleAuthProvider,
   signInWithPopup,
   signOut,
@@ -54,9 +55,11 @@ function messageForError(error) {
     "auth/email-already-in-use": "An account with this email already exists.",
     "auth/invalid-credential": "Email or password is incorrect.",
     "auth/invalid-email": "Enter a valid email address.",
-    "auth/weak-password": "Choose a password with at least 6 characters.",
+    "auth/weak-password": "Choose a password with at least 8 characters.",
     "auth/too-many-requests": "Too many attempts. Wait a little and try again.",
     "auth/network-request-failed": "Could not connect. Check your internet and try again.",
+    "auth/user-disabled": "This account is disabled. Contact the site administrator.",
+    "auth/operation-not-allowed": "This sign-in method is not enabled for this project.",
     "auth/popup-closed-by-user": "Google sign-in was closed before it finished.",
     "auth/unauthorized-domain": "This site domain is not authorized in Firebase Authentication settings."
   };
@@ -127,6 +130,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   const signupForm = document.getElementById("signupForm");
   attachGoogleButton(document.getElementById("googleSignInButton"));
+
+  document.querySelectorAll("[data-password-toggle]").forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const input = document.getElementById(toggle.dataset.passwordToggle);
+      if (!input) return;
+      const reveal = input.type === "password";
+      input.type = reveal ? "text" : "password";
+      toggle.setAttribute("aria-pressed", String(reveal));
+      toggle.textContent = reveal ? "Hide password" : "Show password";
+    });
+  });
+
+  document.getElementById("resetPasswordButton")?.addEventListener("click", async () => {
+    const emailInput = document.getElementById("email");
+    const email = emailInput?.value.trim();
+    if (!email) {
+      setAuthStatus("Enter your email address first, then choose Forgot password?", true);
+      emailInput?.focus();
+      return;
+    }
+    try {
+      await sendPasswordResetEmail(auth, email);
+      setAuthStatus("If an account exists for that address, a password reset email is on its way.");
+    } catch (error) {
+      setAuthStatus(messageForError(error), true);
+    }
+  });
+
   if (loginForm) attachForm(loginForm, "login");
   if (signupForm) attachForm(signupForm, "signup");
 });

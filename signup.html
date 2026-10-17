@@ -37,14 +37,15 @@
 
         <form id="signupForm" class="auth-form" method="post">
           <label for="name">Full name</label>
-          <input id="name" name="name" type="text" maxlength="100" placeholder="Your full name" required />
+          <input id="name" name="name" type="text" maxlength="100" placeholder="Your full name" autocomplete="name" required />
 
           <label for="signup-email">Email</label>
-          <input id="signup-email" name="email" type="email" maxlength="254" placeholder="you@example.com" required />
+          <input id="signup-email" name="email" type="email" maxlength="254" placeholder="you@example.com" autocomplete="email" required />
 
           <label for="signup-password">Password</label>
-          <input id="signup-password" name="password" type="password" minlength="8" placeholder="Create a password" required />
+          <input id="signup-password" name="password" type="password" minlength="8" placeholder="At least 8 characters" autocomplete="new-password" required />
 
+          <button class="password-toggle" type="button" data-password-toggle="signup-password" aria-pressed="false">Show password</button>
           <button type="submit">Create account</button>
           <button id="googleSignInButton" class="auth-google" type="button">Continue with Google</button>
 

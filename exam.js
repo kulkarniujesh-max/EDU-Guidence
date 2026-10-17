@@ -1,177 +1,35 @@
-const examNames = {
-  "law-cet": "CET",
-  slat: "SLAT",
-  lsat: "LSAT",
-  "cuet-ug": "CUET UG",
-  "nid-dat": "NID DAT",
-  aieed: "AIEED",
-  nift: "NIFT",
-  jee: "JEE",
-  mhtcet: "MHTCET",
-  "srm-jee": "SRM-JEE",
-  bitsat: "BITSAT",
-  viteee: "VITEEE",
-  "defence-cet": "CET",
-  "defence-slat": "SLAT",
-  "defence-lsat": "LSAT",
-  "commerce-cet": "CET",
-  "commerce-slat": "SLAT",
-  "commerce-lsat": "LSAT"
+const exams = {
+  "law-cet": { name: "CET", field: "Law", path: "law.html", summary: "A Common Entrance Test route connected with law studies. CET names and rules vary by authority, so confirm the specific exam and current notice for your target institution." },
+  slat: { name: "SLAT", field: "Law", path: "law.html", summary: "An entrance route for undergraduate law programmes. Review the current exam pattern, selection stages, and dates with the conducting institution." },
+  lsat: { name: "LSAT", field: "Law", path: "law.html", summary: "An admission test used by participating law schools. Check which institutions currently accept the test and their individual admission requirements." },
+  "cuet-ug": { name: "CUET UG", field: "Arts", path: "arts.html", summary: "A common entrance route used by participating universities for undergraduate admissions. Course requirements and subject combinations depend on each university." },
+  "nid-dat": { name: "NID DAT", field: "Arts & Design", path: "arts.html", summary: "An entrance route for design education at NID. Check the current admissions handbook for stages, eligibility, and portfolio or studio-test requirements." },
+  aieed: { name: "AIEED", field: "Arts & Design", path: "arts.html", summary: "An entrance route associated with design programmes. Confirm the current exam structure and participating programmes directly with the institution." },
+  nift: { name: "NIFT", field: "Arts & Design", path: "arts.html", summary: "Entrance examinations for programmes at NIFT cover creative and fashion-related study. The applicable test depends on the programme and admission year." },
+  jee: { name: "JEE", field: "Engineering", path: "engineering.html", summary: "A national engineering entrance route. The applicable JEE examination depends on the institution and programme you plan to apply for." },
+  mhtcet: { name: "MHTCET", field: "Engineering", path: "engineering.html", summary: "An entrance examination used for admissions to participating Maharashtra programmes. Check the current subject group, eligibility, and counselling process." },
+  "srm-jee": { name: "SRM-JEE", field: "Engineering", path: "engineering.html", summary: "An entrance route for SRM engineering programmes. Confirm the current format, eligibility, and admission cycle with SRM." },
+  bitsat: { name: "BITSAT", field: "Engineering", path: "engineering.html", summary: "An entrance test for undergraduate programmes at BITS campuses. Check the current bulletin for eligibility and application requirements." },
+  viteee: { name: "VITEEE", field: "Engineering", path: "engineering.html", summary: "An entrance examination for VIT undergraduate engineering programmes. Review current admission details and programme-specific criteria." },
+  "defence-cet": { name: "CET", field: "Defence", path: "defence.html", summary: "This CET link is listed under the defence pathway. Confirm the exact examination and institution with the official notice before applying." },
+  "defence-slat": { name: "SLAT", field: "Defence", path: "defence.html", summary: "This exam link is listed under the defence pathway. Review the exam authority’s current notice to confirm it matches your intended course." },
+  "defence-lsat": { name: "LSAT", field: "Defence", path: "defence.html", summary: "This exam link is listed under the defence pathway. Verify the intended course and accepted entrance route with the official source." },
+  "commerce-cet": { name: "CET", field: "Commerce", path: "commerce.html", summary: "A CET route can vary by university and programme. Confirm the exact exam, subject requirements, and admission process with your target institution." },
+  "commerce-slat": { name: "SLAT", field: "Commerce", path: "commerce.html", summary: "This exam link is listed under the commerce pathway. Check the current exam authority information and confirm it is accepted for your target programme." },
+  "commerce-lsat": { name: "LSAT", field: "Commerce", path: "commerce.html", summary: "This exam link is listed under the commerce pathway. Verify the exam and programme fit with the current admissions information." },
+  "neet-ug": { name: "NEET UG", field: "Medical", path: "medical.html", summary: "The undergraduate medical entrance route in India. Check the current official bulletin for eligibility, syllabus, application dates, and counselling details." }
 };
 
 const examKey = new URLSearchParams(window.location.search).get("exam");
-const examName = examNames[examKey];
+const exam = exams[examKey];
 
-if (!examName) {
+if (!exam) {
   window.location.replace("career.html");
 } else {
-  document.querySelector("#exam-title").textContent = examName;
-  document.title = examName;
+  document.querySelector("#exam-title").textContent = exam.name;
+  document.querySelector("#exam-field").textContent = `${exam.field} pathway`;
+  document.querySelector("#exam-summary").textContent = exam.summary;
+  document.querySelector("#careerLink").href = exam.path;
+  document.querySelector("#fieldLink").href = exam.path;
+  document.title = `${exam.name} | ${exam.field} | EduGuidance`;
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  const container = document.getElementById("objectContainer");
-  if (!container) return;
-
-  const { Engine, Bodies, Composite, Mouse, MouseConstraint, Runner } = Matter;
-
-  // 1. Initialize Engine
-  const engine = Engine.create({
-    gravity: { x: 0, y: 1.15 } // Crisp, snappy drop
-  });
-
-  let bounds = container.getBoundingClientRect();
-  const wallThickness = 160;
-
-  // 2. Static Boundaries (Floor, Left Wall, Right Wall)
-  const ground = Bodies.rectangle(
-    bounds.width / 2,
-    bounds.height + wallThickness / 2,
-    bounds.width * 2,
-    wallThickness,
-    { isStatic: true }
-  );
-
-  const leftWall = Bodies.rectangle(
-    -wallThickness / 2,
-    bounds.height / 2,
-    wallThickness,
-    bounds.height * 2,
-    { isStatic: true }
-  );
-
-  const rightWall = Bodies.rectangle(
-    bounds.width + wallThickness / 2,
-    bounds.height / 2,
-    wallThickness,
-    bounds.height * 2,
-    { isStatic: true }
-  );
-
-  Composite.add(engine.world, [ground, leftWall, rightWall]);
-
-  // Add invisible ceiling after 3 seconds so dropped objects never escape when flung
-  setTimeout(() => {
-    const ceiling = Bodies.rectangle(
-      bounds.width / 2,
-      -wallThickness / 2,
-      bounds.width * 2,
-      wallThickness,
-      { isStatic: true }
-    );
-    Composite.add(engine.world, ceiling);
-  }, 3000);
-
-  // 3. Map All DOM Elements to Matter Rigid Bodies
-  const items = container.querySelectorAll(".physics-item");
-  const physicsBodies = [];
-
-  items.forEach((element, index) => {
-    const rect = element.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const shapeType = element.dataset.shape;
-
-    // Stagger spawn positions so they cascade from top naturally without jamming
-    const startX = Math.random() * (bounds.width - width - 80) + width / 2 + 40;
-    const startY = -60 - index * 42 - Math.random() * 50;
-    const initialRotation = (Math.random() - 0.5) * 1.2;
-
-    const physicsOptions = {
-      restitution: 0.62, // Bouncy feel
-      friction: 0.22,    // Allows sliding
-      frictionAir: 0.018,// Light air resistance
-      density: 0.0025,
-      angle: initialRotation
-    };
-
-    let body;
-
-    if (shapeType === "circle") {
-      const radius = width / 2;
-      body = Bodies.circle(startX, startY, radius, physicsOptions);
-    } else if (shapeType === "triangle") {
-      const radius = width / 1.7;
-      body = Bodies.polygon(startX, startY, 3, radius, physicsOptions);
-    } else if (shapeType === "pill") {
-      body = Bodies.rectangle(startX, startY, width, height, {
-        ...physicsOptions,
-        chamfer: { radius: height / 2 }
-      });
-    } else {
-      // Square or rectangle
-      body = Bodies.rectangle(startX, startY, width, height, {
-        ...physicsOptions,
-        chamfer: { radius: Math.min(14, width / 4) }
-      });
-    }
-
-    physicsBodies.push({ element, body, width, height });
-    Composite.add(engine.world, body);
-  });
-
-  // 4. Mouse / Touch Dragging
-  const mouse = Mouse.create(container);
-
-  // Preserve normal page scrolling on touch & wheel
-  mouse.element.removeEventListener("wheel", mouse.mousewheel);
-  mouse.element.removeEventListener("DOMMouseScroll", mouse.mousewheel);
-
-  const mouseConstraint = MouseConstraint.create(engine, {
-    mouse: mouse,
-    constraint: {
-      stiffness: 0.2,
-      render: { visible: false }
-    }
-  });
-
-  Composite.add(engine.world, mouseConstraint);
-
-  // 5. Start Runner
-  const runner = Runner.create();
-  Runner.run(runner, engine);
-
-  // 6. Sync DOM Transforms with Matter.js Bodies Loop
-  function syncPositions() {
-    physicsBodies.forEach(({ element, body, width, height }) => {
-      const x = body.position.x - width / 2;
-      const y = body.position.y - height / 2;
-      element.style.transform = `translate3d(${x}px, ${y}px, 0px) rotate(${body.angle}rad)`;
-    });
-    requestAnimationFrame(syncPositions);
-  }
-  requestAnimationFrame(syncPositions);
-
-  // 7. Responsive Window Resizing
-  window.addEventListener("resize", () => {
-    bounds = container.getBoundingClientRect();
-    Matter.Body.setPosition(ground, {
-      x: bounds.width / 2,
-      y: bounds.height + wallThickness / 2
-    });
-    Matter.Body.setPosition(rightWall, {
-      x: bounds.width + wallThickness / 2,
-      y: bounds.height / 2
-    });
-  });
-});

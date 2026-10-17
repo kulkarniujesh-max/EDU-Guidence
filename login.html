@@ -37,11 +37,13 @@
 
         <form id="loginForm" class="auth-form" method="post">
           <label for="email">Email</label>
-          <input id="email" name="email" type="email" maxlength="254" placeholder="you@example.com" required />
+          <input id="email" name="email" type="email" maxlength="254" placeholder="you@example.com" autocomplete="email" required />
 
           <label for="password">Password</label>
-          <input id="password" name="password" type="password" minlength="8" placeholder="Enter your password" required />
+          <input id="password" name="password" type="password" minlength="6" placeholder="Enter your password" autocomplete="current-password" required />
 
+          <button class="password-toggle" type="button" data-password-toggle="password" aria-pressed="false">Show password</button>
+          <button class="auth-reset" type="button" id="resetPasswordButton">Forgot password?</button>
           <button type="submit">Login</button>
           <button id="googleSignInButton" class="auth-google" type="button">Continue with Google</button>
 
