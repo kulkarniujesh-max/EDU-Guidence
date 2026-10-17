@@ -1,6 +1,20 @@
-// Set window.EDUGUIDANCE_API_BASE before loading this file when the API is
-// hosted separately. Leave it empty when the API and site share an origin.
-const API_BASE = (window.EDUGUIDANCE_API_BASE || "").replace(/\/$/, "");
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-app.js";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  updateProfile
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import { firebaseConfig } from "./firebase-config.js";
+
+const configured = Object.values(firebaseConfig).every((value) =>
+  typeof value === "string" && value && !value.startsWith("YOUR_")
+);
+const auth = configured ? getAuth(initializeApp(firebaseConfig)) : null;
 
 function setAuthStatus(message, isError = false) {
   const status = document.getElementById("authStatus");
@@ -10,18 +24,7 @@ function setAuthStatus(message, isError = false) {
   status.classList.toggle("success", !isError && Boolean(message));
 }
 
-function getCurrentUser() {
-  try {
-    return JSON.parse(localStorage.getItem("eduguidance-user") || "null");
-  } catch {
-    localStorage.removeItem("eduguidance-user");
-    localStorage.removeItem("eduguidance-token");
-    return null;
-  }
-}
-
-function updateAuthNav() {
-  const user = getCurrentUser();
+function updateAuthNav(user) {
   const login = document.querySelector('[data-auth-link="login"]');
   const signup = document.querySelector('[data-auth-link="signup"]');
   const profile = document.querySelector('[data-auth-user="profile"]');
@@ -30,58 +33,100 @@ function updateAuthNav() {
   if (signup) signup.hidden = Boolean(user);
   if (profile) {
     profile.hidden = !user;
-    if (user) profile.textContent = `Hi, ${user.name}`;
+    if (user) profile.textContent = `Hi, ${user.displayName || user.email}`;
   }
   if (logout) {
     logout.hidden = !user;
-    logout.addEventListener("click", (event) => {
+    logout.onclick = async (event) => {
       event.preventDefault();
-      localStorage.removeItem("eduguidance-user");
-      localStorage.removeItem("eduguidance-token");
-      window.location.href = "index.html";
-    }, { once: true });
+      try {
+        await signOut(auth);
+        window.location.href = "index.html";
+      } catch {
+        setAuthStatus("Unable to sign out right now. Please try again.", true);
+      }
+    };
   }
 }
 
-function attachAuthForm(form, endpoint, successMessage, redirectPath) {
+function messageForError(error) {
+  const messages = {
+    "auth/email-already-in-use": "An account with this email already exists.",
+    "auth/invalid-credential": "Email or password is incorrect.",
+    "auth/invalid-email": "Enter a valid email address.",
+    "auth/weak-password": "Choose a password with at least 6 characters.",
+    "auth/too-many-requests": "Too many attempts. Wait a little and try again.",
+    "auth/network-request-failed": "Could not connect. Check your internet and try again.",
+    "auth/popup-closed-by-user": "Google sign-in was closed before it finished.",
+    "auth/unauthorized-domain": "This site domain is not authorized in Firebase Authentication settings."
+  };
+  return messages[error.code] || "Something went wrong. Please try again.";
+}
+
+function attachForm(form, action) {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const button = form.querySelector('button[type="submit"]');
-    const payload = Object.fromEntries(new FormData(form).entries());
+    const fields = new FormData(form);
     if (button) button.disabled = true;
     setAuthStatus("Please wait...");
+
     try {
-      const response = await fetch(`${API_BASE}/api/auth/${endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      const data = await response.json().catch(() => ({}));
-      if (!response.ok) {
-        setAuthStatus(data.message || "Authentication failed. Check that the API is configured.", true);
-        return;
+      const email = String(fields.get("email") || "").trim();
+      const password = String(fields.get("password") || "");
+      if (action === "signup") {
+        const name = String(fields.get("name") || "").trim();
+        if (!name) {
+          setAuthStatus("Enter your name to create an account.", true);
+          return;
+        }
+        const credential = await createUserWithEmailAndPassword(auth, email, password);
+        await updateProfile(credential.user, { displayName: name });
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
       }
-      localStorage.setItem("eduguidance-token", data.token);
-      localStorage.setItem("eduguidance-user", JSON.stringify(data.user));
-      setAuthStatus(successMessage);
-      window.setTimeout(() => { window.location.href = redirectPath; }, 700);
-    } catch {
-      setAuthStatus("Could not reach the authentication API. Check its URL and try again.", true);
+      setAuthStatus(action === "signup" ? "Account created. Redirecting..." : "Login successful. Redirecting...");
+      window.setTimeout(() => { window.location.href = "index.html"; }, 700);
+    } catch (error) {
+      setAuthStatus(messageForError(error), true);
     } finally {
       if (button) button.disabled = false;
     }
   });
 }
 
+function attachGoogleButton(button) {
+  if (!button) return;
+  button.addEventListener("click", async () => {
+    button.disabled = true;
+    setAuthStatus("Connecting to Google...");
+    try {
+      await signInWithPopup(auth, new GoogleAuthProvider());
+      setAuthStatus("Signed in with Google. Redirecting...");
+      window.setTimeout(() => { window.location.href = "index.html"; }, 700);
+    } catch (error) {
+      setAuthStatus(messageForError(error), true);
+    } finally {
+      button.disabled = false;
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  updateAuthNav();
-  const login = document.getElementById("loginForm");
-  const signup = document.getElementById("signupForm");
-  if ((login || signup) && !API_BASE && location.hostname.endsWith("github.io")) {
-    setAuthStatus("Sign-in is unavailable until an authentication API is configured for this site.", true);
-    document.querySelectorAll("#loginForm input, #signupForm input, #loginForm button, #signupForm button")
-      .forEach((control) => { control.disabled = true; });
+  if (!configured) {
+    updateAuthNav(null);
+    if (document.getElementById("loginForm") || document.getElementById("signupForm")) {
+      setAuthStatus("Finish the Firebase setup to enable sign-in. See firebase-config.js.", true);
+      document.querySelectorAll("#loginForm input, #signupForm input, #loginForm button, #signupForm button, #googleSignInButton")
+        .forEach((control) => { control.disabled = true; });
+    }
+    return;
   }
-  if (login) attachAuthForm(login, "login", "Login successful. Redirecting...", "index.html");
-  if (signup) attachAuthForm(signup, "signup", "Account created. Redirecting...", "login.html");
+
+  onAuthStateChanged(auth, updateAuthNav);
+  const loginForm = document.getElementById("loginForm");
+  const signupForm = document.getElementById("signupForm");
+  attachGoogleButton(document.getElementById("googleSignInButton"));
+  if (loginForm) attachForm(loginForm, "login");
+  if (signupForm) attachForm(signupForm, "signup");
 });
