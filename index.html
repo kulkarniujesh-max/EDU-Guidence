@@ -21,8 +21,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
 </head>
 
-<body>
-  <main data-scroll-container>
+<body data-scroll-container>
+  <main>
     <div class="Home-Page" id="home">
       <nav>
         <div class="logo">
@@ -165,14 +165,9 @@
 
   <script src="main.js"></script>
   <script type="module" src="auth.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
   <script src="https://kit.fontawesome.com/d0a2940e4c.js" crossorigin="anonymous"></script>
-  <script>
-    const locomotiveScroll = new LocomotiveScroll({
-      el: document.querySelector('[data-scroll-container]'),
-      smooth: true
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="locomotive-init.js"></script>
 </body>
 
 </html>

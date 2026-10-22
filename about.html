@@ -11,8 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://kit.fontawesome.com/d0a2940e4c.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
 </head>
-<body class="about-page">
+<body data-scroll-container class="about-page">
   <header class="about-header">
     <a class="about-home" href="index.html#home" aria-label="Home"><i class="fa-solid fa-house" aria-hidden="true"></i></a>
     <button class="about-menu-toggle" type="button" aria-expanded="false" aria-controls="about-menu" aria-label="Open menu">
@@ -54,5 +55,7 @@
       menu.hidden = isOpen;
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="locomotive-init.js"></script>
 </body>
 </html>

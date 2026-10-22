@@ -46,15 +46,16 @@ function navigateTo(hash, updateHistory = true) {
   }
 
   try {
-    if (typeof locomotiveScroll !== "undefined" && locomotiveScroll?.scrollTo) {
-      locomotiveScroll.scrollTo(target, { offset: -24, duration: 850 });
+    if (window.locomotiveScroll?.scrollTo) {
+      window.locomotiveScroll.scrollTo(target, { offset: -24, duration: 850 });
       return;
     }
   } catch {
     // The existing smooth-scroll library may not be available when offline.
   }
 
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+  target.scrollIntoView({ behavior, block: "start" });
 }
 
 document.addEventListener("click", (event) => {
