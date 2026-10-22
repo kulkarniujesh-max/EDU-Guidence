@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Law Careers | Education Guidance</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=20261022-4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -21,88 +21,45 @@
           <img src="assets/law.jpg" alt="A statue of Lady Justice holding the scales of justice" />
         </div>
       </div>
-      <div class="exam-options page-wrap" id="exams" aria-label="Law entrance exams">
-        <a href="exam.html?exam=law-cet">CET <span aria-hidden="true">↗</span></a>
-        <a href="exam.html?exam=slat">SLAT <span aria-hidden="true">↗</span></a>
-        <a href="exam.html?exam=lsat">LSAT <span aria-hidden="true">↗</span></a>
-      </div>
+      <section class="field-exam-section page-wrap" id="exams" aria-labelledby="field-exam-title">
+        <div class="field-exam-heading"><div><p class="field-section-kicker">EXAM ROUTES / 01</p><h2>Explore law admissions<span>.</span></h2><p>Compare the linked law admission routes, then verify which test your target institution accepts.</p></div><span id="field-exam-count" aria-live="polite">3 exam guides</span></div>
+        <label class="field-exam-search"><span class="visually-hidden">Search law exam guides</span><span aria-hidden="true">⌕</span><input id="field-exam-search" type="search" placeholder="Find an exam or course…" autocomplete="off" /><kbd>/</kbd></label>
+        <nav class="exam-options" aria-label="Law entrance exam guides">
+          <a class="exam-option-card" href="exam.html?exam=law-cet" data-search="CET Maharashtra MAH LLB five year integrated law">
+            <span class="exam-card-index">01 / STATE ROUTE</span><h3>MAH-LL.B. 5-Year CET</h3><p>Maharashtra’s five-year integrated law admission route. Check the current State CET Cell brochure.</p><span class="exam-card-link">Open exam guide <span aria-hidden="true">↗</span></span>
+          </a>
+          <a class="exam-option-card" href="exam.html?exam=slat" data-search="SLAT Symbiosis law admission test undergraduate">
+            <span class="exam-card-index">02 / UNIVERSITY ROUTE</span><h3>SLAT</h3><p>Explore the entrance test for participating Symbiosis Law Schools.</p><span class="exam-card-link">Open exam guide <span aria-hidden="true">↗</span></span>
+          </a>
+          <a class="exam-option-card" href="exam.html?exam=lsat" data-search="LSAT law school admission test India">
+            <span class="exam-card-index">03 / VERIFY YOUR ROUTE</span><h3>LSAT</h3><p>Confirm the exact test and current acceptance with your target law school.</p><span class="exam-card-link">Open exam guide <span aria-hidden="true">↗</span></span>
+          </a>
+        </nav>
+        <p class="field-exam-empty" id="field-exam-empty" hidden>No exam guides match that search. Try another name or course.</p>
+      </section>
     </section>
   </main>
-  <!-- Interactive Footer -->
-  <footer class="interactive-footer" id="interactiveFooter">
-    <!-- Brand Layer (Centered Behind Physics Objects) -->
-    <div class="footer-content">
-      <h2 class="footer-brand">eduguidance</h2>
-      <p class="footer-tagline">
-        Empowering careers and intelligent guidance through AI technology.
-      </p>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Eduguidance. All rights reserved.</p>
+  <footer class="site-footer" id="siteFooter">
+    <div class="site-footer-main">
+      <div class="site-footer-copy">
+        <p class="site-footer-kicker">YOUR NEXT STEP STARTS HERE</p>
+        <a class="site-footer-brand" href="index.html#home">eduguidance<span aria-hidden="true">↗</span></a>
+        <p class="site-footer-tagline">Explore what fits you. Take the next step with confidence.</p>
       </div>
+      <nav class="site-footer-actions" aria-label="Explore EduGuidance">
+        <a href="career.html"><span>Explore career paths</span><span aria-hidden="true">↗</span></a>
+        <a href="chatbot.html"><span>Ask the AI guide</span><span aria-hidden="true">↗</span></a>
+      </nav>
     </div>
-
-    <!-- Physics Elements Playground -->
-    <div class="object-container" id="objectContainer">
-      <!-- 1. The Two Main Tags -->
-      <a class="physics-item tag-pill" data-shape="pill" href="career.html" aria-label="Explore career paths">Career</a>
-      <a class="physics-item tag-pill" data-shape="pill" href="chatbot.html" aria-label="Open the guidance assistant">AI Chatbot</a>
-
-      <!-- 2. Rich Set of Geometric Shapes (Solid & Outlined) -->
-      <!-- Large & Medium Circles -->
-      <div class="physics-item shape-circle-lg" data-shape="circle"></div>
-      <div class="physics-item shape-circle-md" data-shape="circle"></div>
-      <div class="physics-item shape-circle-md" data-shape="circle"></div>
-      <div class="physics-item shape-circle-sm" data-shape="circle"></div>
-      <div class="physics-item shape-circle-sm" data-shape="circle"></div>
-
-      <!-- Rings & Donuts -->
-      <div class="physics-item shape-ring-lg" data-shape="circle"></div>
-      <div class="physics-item shape-ring-md" data-shape="circle"></div>
-      <div class="physics-item shape-donut" data-shape="circle"></div>
-      <div class="physics-item shape-donut" data-shape="circle"></div>
-
-      <!-- Squares & Rounded Cubes -->
-      <div class="physics-item shape-square-lg" data-shape="square"></div>
-      <div class="physics-item shape-square-md" data-shape="square"></div>
-      <div class="physics-item shape-square-md" data-shape="square"></div>
-      <div class="physics-item shape-square-sm" data-shape="square"></div>
-      <div class="physics-item shape-square-sm" data-shape="square"></div>
-
-      <!-- Triangles -->
-      <div class="physics-item shape-triangle" data-shape="triangle">
-        <svg viewBox="0 0 100 100"><polygon points="50,8 92,92 8,92" fill="#ffffff"/></svg>
-      </div>
-      <div class="physics-item shape-triangle" data-shape="triangle">
-        <svg viewBox="0 0 100 100"><polygon points="50,8 92,92 8,92" fill="#ffffff"/></svg>
-      </div>
-      <div class="physics-item shape-triangle-sm" data-shape="triangle">
-        <svg viewBox="0 0 100 100"><polygon points="50,8 92,92 8,92" fill="#ffffff"/></svg>
-      </div>
-
-      <!-- Crosses / Plus Signs -->
-      <div class="physics-item shape-cross" data-shape="circle">
-        <svg viewBox="0 0 100 100">
-          <rect x="38" y="5" width="24" height="90" rx="12" fill="#ffffff" />
-          <rect x="5" y="38" width="90" height="24" rx="12" fill="#ffffff" />
-        </svg>
-      </div>
-      <div class="physics-item shape-cross-sm" data-shape="circle">
-        <svg viewBox="0 0 100 100">
-          <rect x="38" y="5" width="24" height="90" rx="12" fill="#ffffff" />
-          <rect x="5" y="38" width="90" height="24" rx="12" fill="#ffffff" />
-        </svg>
-      </div>
-
-      <!-- Mini Accents (Marbles / Pellets) -->
-      <div class="physics-item shape-dot" data-shape="circle"></div>
-      <div class="physics-item shape-dot" data-shape="circle"></div>
-      <div class="physics-item shape-dot" data-shape="circle"></div>
-      <div class="physics-item shape-dot" data-shape="circle"></div>
+    <div class="site-footer-bottom">
+      <p>© 2026 EduGuidance. All rights reserved.</p>
+      <nav aria-label="Footer links"><a href="index.html#home">Home</a><a href="about.html">About us</a><a href="login.html">Sign in</a></nav>
     </div>
   </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
   <script src="main.js"></script>
+  <script src="field-exam-explorer.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
   <script src="locomotive-init.js"></script>
+  <script src="site-enhancements.js"></script>
 </body>
 </html>

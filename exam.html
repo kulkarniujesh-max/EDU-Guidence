@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Exam guide with eligibility, subjects, test structure and official admissions links." />
   <title>Exam details | EduGuidance</title>
-  <link rel="stylesheet" href="style.css?v=20261022-2" />
+  <link rel="stylesheet" href="style.css?v=20261022-4" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -24,6 +24,11 @@
         <p class="exam-summary" id="exam-summary"></p>
         <p class="exam-context-note" id="exam-context-note" hidden></p>
         <a class="exam-back-link" id="fieldLink" href="career.html">Explore this career path <span aria-hidden="true">↗</span></a>
+        <div class="exam-actions" aria-label="Exam planning tools">
+          <button class="exam-tool-button" id="save-exam" type="button" aria-pressed="false">☆ Save exam</button>
+          <button class="exam-tool-button" id="open-exam-compare" type="button">Compare exams</button>
+          <a class="exam-tool-link" href="saved-exams.html">My saved exams <span id="saved-exam-count">0</span></a>
+        </div>
       </div>
       <div class="exam-stamp" id="exam-stamp" aria-hidden="true">EXAM</div>
     </section>
@@ -52,6 +57,7 @@
 
     <section class="exam-section exam-process" aria-labelledby="process-title">
       <div class="exam-section-heading"><p class="exam-kicker">05 / FROM TEST TO OFFER</p><h2 id="process-title">Mode & selection process</h2></div>
+      <p class="exam-plan-progress" id="exam-plan-progress" aria-live="polite">Your application checklist: 0 complete</p>
       <ol class="exam-process-list" id="exam-process"></ol>
     </section>
 
@@ -68,8 +74,35 @@
 
     <nav class="exam-path-nav" aria-label="Explore other career paths" id="career-path-nav"></nav>
   </main>
-  <script src="exam.js?v=20261022-2"></script>
+  <dialog class="exam-compare-dialog" id="exam-compare-dialog" aria-labelledby="compare-title">
+    <div class="compare-dialog-header"><div><p class="exam-kicker">PLAN SIDE BY SIDE</p><h2 id="compare-title">Compare exams</h2></div><button class="compare-close" id="close-exam-compare" type="button" aria-label="Close comparison">×</button></div>
+    <p class="compare-intro">Choose up to three exams to compare their route, format and application timing.</p>
+    <label class="compare-search"><span class="visually-hidden">Find an exam to compare</span><span aria-hidden="true">⌕</span><input id="compare-search" type="search" placeholder="Find an exam…" autocomplete="off" /></label>
+    <div class="compare-options" id="compare-options"></div>
+    <p class="compare-status" id="compare-status" aria-live="polite">Select two or three exams to see a comparison.</p>
+    <button class="exam-tool-button compare-submit" id="compare-selected" type="button">Show comparison</button>
+    <div class="compare-result" id="compare-result" aria-live="polite"></div>
+  </dialog>
+  <footer class="site-footer" id="siteFooter">
+    <div class="site-footer-main">
+      <div class="site-footer-copy">
+        <p class="site-footer-kicker">YOUR NEXT STEP STARTS HERE</p>
+        <a class="site-footer-brand" href="index.html#home">eduguidance<span aria-hidden="true">↗</span></a>
+        <p class="site-footer-tagline">Explore what fits you. Take the next step with confidence.</p>
+      </div>
+      <nav class="site-footer-actions" aria-label="Explore EduGuidance">
+        <a href="career.html"><span>Explore career paths</span><span aria-hidden="true">↗</span></a>
+        <a href="chatbot.html"><span>Ask the AI guide</span><span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+    <div class="site-footer-bottom">
+      <p>© 2026 EduGuidance. All rights reserved.</p>
+      <nav aria-label="Footer links"><a href="index.html#home">Home</a><a href="about.html">About us</a><a href="login.html">Sign in</a></nav>
+    </div>
+  </footer>
+  <script src="exam.js?v=20261022-3"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
   <script src="locomotive-init.js"></script>
+  <script src="site-enhancements.js"></script>
 </body>
 </html>

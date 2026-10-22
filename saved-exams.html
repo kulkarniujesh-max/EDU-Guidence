@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Your saved EduGuidance exam shortlist." />
+  <title>My saved exams | EduGuidance</title>
+  <link rel="stylesheet" href="style.css?v=20261022-4" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
+</head>
+<body data-scroll-container class="saved-exams-page">
+  <header class="exam-detail-nav" aria-label="Page navigation">
+    <a class="page-home-link" href="index.html#home">← Home</a>
+    <a href="career.html">Explore career paths ↗</a>
+  </header>
+  <main class="saved-exams-main">
+    <p class="exam-kicker">YOUR SHORTLIST</p>
+    <h1>My saved exams<span aria-hidden="true">.</span></h1>
+    <p class="saved-exams-intro">Keep the entrance exams you’re considering in one place. Your list stays on this device.</p>
+    <div class="saved-exams-grid" id="saved-exams-grid" aria-live="polite"></div>
+    <section class="saved-exams-empty" id="saved-exams-empty" hidden>
+      <span aria-hidden="true">☆</span>
+      <h2>Your shortlist is ready when you are.</h2>
+      <p>Save an exam from its detail page and it will show up here.</p>
+      <a class="exam-back-link" href="career.html">Explore career paths <span aria-hidden="true">↗</span></a>
+    </section>
+  </main>
+  <footer class="site-footer" id="siteFooter">
+    <div class="site-footer-main">
+      <div class="site-footer-copy">
+        <p class="site-footer-kicker">YOUR NEXT STEP STARTS HERE</p>
+        <a class="site-footer-brand" href="index.html#home">eduguidance<span aria-hidden="true">↗</span></a>
+        <p class="site-footer-tagline">Explore what fits you. Take the next step with confidence.</p>
+      </div>
+      <nav class="site-footer-actions" aria-label="Explore EduGuidance">
+        <a href="career.html"><span>Explore career paths</span><span aria-hidden="true">↗</span></a>
+        <a href="chatbot.html"><span>Ask the AI guide</span><span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+    <div class="site-footer-bottom">
+      <p>© 2026 EduGuidance. All rights reserved.</p>
+      <nav aria-label="Footer links"><a href="index.html#home">Home</a><a href="about.html">About us</a><a href="login.html">Sign in</a></nav>
+    </div>
+  </footer>
+  <script src="saved-exams.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script src="locomotive-init.js"></script>
+  <script src="site-enhancements.js"></script>
+</body>
+</html>

@@ -277,7 +277,160 @@ if (!exam) {
   addTextList("#exam-subjects", exam.subjects);
   addTextList("#exam-eligibility", exam.eligibility);
   addTextList("#exam-pattern", exam.pattern);
-  addTextList("#exam-process", exam.process);
+  const planKey = `eduGuidancePlan:${examKey}`;
+  const readPlan = () => {
+    try { return JSON.parse(localStorage.getItem(planKey) || "[]"); } catch { return []; }
+  };
+  const processList = document.querySelector("#exam-process");
+  const planProgress = document.querySelector("#exam-plan-progress");
+  const storedPlan = readPlan();
+  const planChecks = [];
+  exam.process.forEach((step, index) => {
+    const entry = document.createElement("li");
+    const copy = document.createElement("span");
+    copy.className = "exam-step-copy";
+    copy.textContent = step;
+    const label = document.createElement("label");
+    label.className = "exam-step-check";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = storedPlan[index] === true;
+    checkbox.setAttribute("aria-label", `Mark application step ${index + 1} complete`);
+    const labelText = document.createElement("span");
+    labelText.textContent = "Done";
+    label.append(checkbox, labelText);
+    entry.classList.toggle("is-complete", checkbox.checked);
+    entry.append(copy, label);
+    processList.append(entry);
+    planChecks.push({ checkbox, entry });
+  });
+
+  function updatePlan() {
+    const complete = planChecks.filter(({ checkbox }) => checkbox.checked).length;
+    planProgress.textContent = `Your application checklist: ${complete} of ${planChecks.length} complete`;
+    try { localStorage.setItem(planKey, JSON.stringify(planChecks.map(({ checkbox }) => checkbox.checked))); } catch { /* Keep the checklist usable when storage is unavailable. */ }
+  }
+
+  planChecks.forEach(({ checkbox, entry }) => checkbox.addEventListener("change", () => {
+    entry.classList.toggle("is-complete", checkbox.checked);
+    updatePlan();
+  }));
+  updatePlan();
+
+  const savedStorageKey = "eduGuidanceSavedExams";
+  const readSaved = () => {
+    try {
+      const value = JSON.parse(localStorage.getItem(savedStorageKey) || "[]");
+      return Array.isArray(value) ? value : [];
+    } catch { return []; }
+  };
+  const saveButton = document.querySelector("#save-exam");
+  const savedCount = document.querySelector("#saved-exam-count");
+  const saveCurrent = (saved) => {
+    const items = readSaved().filter((item) => item.key !== examKey);
+    if (saved) items.push({ key: examKey, title: exam.title, field: exam.field, url: `exam.html?exam=${encodeURIComponent(examKey)}` });
+    try { localStorage.setItem(savedStorageKey, JSON.stringify(items)); } catch { /* The save control remains available without persistence. */ }
+    saveButton.setAttribute("aria-pressed", String(saved));
+    saveButton.textContent = saved ? "✓ Saved" : "☆ Save exam";
+    savedCount.textContent = String(items.length);
+  };
+  saveCurrent(readSaved().some((item) => item.key === examKey));
+  saveButton.addEventListener("click", () => saveCurrent(saveButton.getAttribute("aria-pressed") !== "true"));
+
+  const compareDialog = document.querySelector("#exam-compare-dialog");
+  const compareOptions = document.querySelector("#compare-options");
+  const compareSearch = document.querySelector("#compare-search");
+  const compareStatus = document.querySelector("#compare-status");
+  const compareResult = document.querySelector("#compare-result");
+  const compareFields = [
+    ["Career path", "field"], ["Admission route", "purpose"], ["Test mode", "mode"],
+    ["Duration", "duration"], ["Questions", "size"], ["Score", "score"],
+    ["Current dates", "schedule"], ["Application fee", "fee"]
+  ];
+  Object.entries(exams).forEach(([key, details]) => {
+    const label = document.createElement("label");
+    label.className = "compare-option";
+    label.dataset.search = `${details.title} ${details.field}`.toLocaleLowerCase();
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.value = key;
+    checkbox.checked = key === examKey;
+    const title = document.createElement("span");
+    title.textContent = details.title;
+    const field = document.createElement("small");
+    field.textContent = details.field;
+    title.append(field);
+    label.append(checkbox, title);
+    compareOptions.append(label);
+  });
+
+  function updateCompareSelection(input) {
+    const checked = [...compareOptions.querySelectorAll("input:checked")];
+    if (checked.length > 3) {
+      input.checked = false;
+      compareStatus.textContent = "Choose up to three exams at a time.";
+      return;
+    }
+    compareStatus.textContent = checked.length < 2 ? "Select one more exam to compare." : `${checked.length} exams selected. You can compare up to three.`;
+  }
+
+  compareOptions.addEventListener("change", (event) => {
+    if (event.target.matches("input")) updateCompareSelection(event.target);
+  });
+  compareSearch.addEventListener("input", () => {
+    const term = compareSearch.value.trim().toLocaleLowerCase();
+    compareOptions.querySelectorAll(".compare-option").forEach((label) => { label.hidden = !label.dataset.search.includes(term); });
+  });
+  document.querySelector("#open-exam-compare").addEventListener("click", () => {
+    compareResult.replaceChildren();
+    compareSearch.value = "";
+    compareOptions.querySelectorAll(".compare-option").forEach((label) => { label.hidden = false; });
+    updateCompareSelection(compareOptions.querySelector("input:checked"));
+    compareDialog.showModal();
+    compareSearch.focus();
+  });
+  document.querySelector("#close-exam-compare").addEventListener("click", () => compareDialog.close());
+  document.querySelector("#compare-selected").addEventListener("click", () => {
+    const selected = [...compareOptions.querySelectorAll("input:checked")].map(({ value }) => [value, exams[value]]);
+    if (selected.length < 2) {
+      compareStatus.textContent = "Choose at least two exams to compare.";
+      return;
+    }
+    const table = document.createElement("table");
+    table.className = "compare-table";
+    const head = document.createElement("thead");
+    const headerRow = document.createElement("tr");
+    const heading = document.createElement("th");
+    heading.scope = "col";
+    heading.textContent = "Compare";
+    headerRow.append(heading);
+    selected.forEach(([, details]) => {
+      const cell = document.createElement("th");
+      cell.scope = "col";
+      cell.textContent = `${details.title} · ${details.field}`;
+      headerRow.append(cell);
+    });
+    head.append(headerRow);
+    table.append(head);
+    const body = document.createElement("tbody");
+    compareFields.forEach(([label, property]) => {
+      const row = document.createElement("tr");
+      const term = document.createElement("th");
+      term.scope = "row";
+      term.textContent = label;
+      row.append(term);
+      selected.forEach(([, details]) => {
+        const cell = document.createElement("td");
+        cell.textContent = details[property] || "Check the official source";
+        row.append(cell);
+      });
+      body.append(row);
+    });
+    table.append(body);
+    compareResult.replaceChildren(table);
+    compareStatus.textContent = `Showing ${selected.length} exams. Confirm time-sensitive details with the official links.`;
+    compareResult.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  });
   const cycle = document.createElement("p");
   cycle.textContent = exam.cycle;
   document.querySelector("#exam-cycle").append(cycle);

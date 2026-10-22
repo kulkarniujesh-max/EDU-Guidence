@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Career | Education Guidance</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=20261022-4" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet" />
@@ -30,91 +30,87 @@
             </div>
         </section>
 
-        <!-- CAREER BUTTONS NAV -->
-        <nav class="career-field-buttons" aria-label="Choose a career field">
-            <a href="law.html">Law <span aria-hidden="true">↗</span></a>
-            <a href="arts.html">Arts <span aria-hidden="true">↗</span></a>
-            <a href="engineering.html">Engineering <span aria-hidden="true">↗</span></a>
-            <a href="defence.html">Defence <span aria-hidden="true">↗</span></a>
-            <a href="medical.html">Medical <span aria-hidden="true">↗</span></a>
-            <a href="commerce.html">Commerce <span aria-hidden="true">↗</span></a>
-        </nav>
+        <section class="pathway-explorer" aria-labelledby="pathway-title">
+            <div class="pathway-heading">
+                <div>
+                    <p class="pathway-kicker">START EXPLORING</p>
+                    <h2 id="pathway-title">Find your direction<span aria-hidden="true">.</span></h2>
+                </div>
+                <p class="pathway-count" id="pathway-count" aria-live="polite">6 pathways</p>
+            </div>
+
+            <div class="pathway-tools">
+                <label class="pathway-search">
+                    <span class="visually-hidden">Search career pathways</span>
+                    <span class="search-mark" aria-hidden="true">⌕</span>
+                    <input id="pathway-search" type="search" placeholder="Search a field or interest…" autocomplete="off" />
+                    <kbd>/</kbd>
+                </label>
+                <div class="pathway-filters" role="group" aria-label="Filter pathways by interest">
+                    <button type="button" class="pathway-filter is-active" data-filter="all" aria-pressed="true">All paths</button>
+                    <button type="button" class="pathway-filter" data-filter="creative" aria-pressed="false">Creative</button>
+                    <button type="button" class="pathway-filter" data-filter="analytical" aria-pressed="false">Analytical</button>
+                    <button type="button" class="pathway-filter" data-filter="people" aria-pressed="false">People focused</button>
+                </div>
+            </div>
+
+            <nav class="pathway-grid" id="pathway-grid" aria-label="Career pathways">
+                <a class="pathway-card" href="law.html" data-tags="analytical people" data-search="law legal justice advocacy debate legislation courts clat ailet">
+                    <span class="pathway-number">01 / 06</span><span class="pathway-icon" aria-hidden="true">§</span>
+                    <h3>Law</h3><p>Make a case for fairness, policy and justice.</p>
+                    <span class="pathway-meta">Reasoning · Communication</span><span class="pathway-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="pathway-card" href="arts.html" data-tags="creative" data-search="arts design fashion animation media architecture nid nift cuet">
+                    <span class="pathway-number">02 / 06</span><span class="pathway-icon" aria-hidden="true">✳</span>
+                    <h3>Arts &amp; Design</h3><p>Turn ideas and observation into meaningful work.</p>
+                    <span class="pathway-meta">Making · Visual thinking</span><span class="pathway-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="pathway-card" href="engineering.html" data-tags="analytical creative" data-search="engineering technology computing machines problem solving jee mhtcet bitsat viteee">
+                    <span class="pathway-number">03 / 06</span><span class="pathway-icon" aria-hidden="true">⌘</span>
+                    <h3>Engineering</h3><p>Build practical solutions with science and technology.</p>
+                    <span class="pathway-meta">Problem solving · Building</span><span class="pathway-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="pathway-card" href="defence.html" data-tags="people" data-search="defence service leadership discipline armed forces nda cds commitment">
+                    <span class="pathway-number">04 / 06</span><span class="pathway-icon" aria-hidden="true">✦</span>
+                    <h3>Defence</h3><p>Serve with purpose, discipline and leadership.</p>
+                    <span class="pathway-meta">Service · Teamwork</span><span class="pathway-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="pathway-card" href="medical.html" data-tags="people analytical" data-search="medical health biology patient care medicine neet">
+                    <span class="pathway-number">05 / 06</span><span class="pathway-icon" aria-hidden="true">＋</span>
+                    <h3>Medical</h3><p>Use science and care to improve people’s health.</p>
+                    <span class="pathway-meta">Science · Patient care</span><span class="pathway-arrow" aria-hidden="true">↗</span>
+                </a>
+                <a class="pathway-card" href="commerce.html" data-tags="analytical people" data-search="commerce business finance accounting economics management cuet">
+                    <span class="pathway-number">06 / 06</span><span class="pathway-icon" aria-hidden="true">↗</span>
+                    <h3>Commerce</h3><p>Understand how money, markets and ideas move.</p>
+                    <span class="pathway-meta">Business · Decisions</span><span class="pathway-arrow" aria-hidden="true">↗</span>
+                </a>
+            </nav>
+            <p class="pathway-empty" id="pathway-empty" hidden>No pathways match that search. Try another interest or clear the search.</p>
+            <p class="pathway-hint">Not sure yet? Pick an interest above, or search an exam you have in mind.</p>
+        </section>
     </main>
-    <!-- Interactive Footer -->
-  <footer class="interactive-footer" id="interactiveFooter">
-    <!-- Brand Layer (Centered Behind Physics Objects) -->
-    <div class="footer-content">
-      <h2 class="footer-brand">eduguidance</h2>
-      <p class="footer-tagline">
-        Empowering careers and intelligent guidance through AI technology.
-      </p>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Eduguidance. All rights reserved.</p>
+  <footer class="site-footer" id="siteFooter">
+    <div class="site-footer-main">
+      <div class="site-footer-copy">
+        <p class="site-footer-kicker">YOUR NEXT STEP STARTS HERE</p>
+        <a class="site-footer-brand" href="index.html#home">eduguidance<span aria-hidden="true">↗</span></a>
+        <p class="site-footer-tagline">Explore what fits you. Take the next step with confidence.</p>
       </div>
+      <nav class="site-footer-actions" aria-label="Explore EduGuidance">
+        <a href="career.html"><span>Explore career paths</span><span aria-hidden="true">↗</span></a>
+        <a href="chatbot.html"><span>Ask the AI guide</span><span aria-hidden="true">↗</span></a>
+      </nav>
     </div>
-
-    <!-- Physics Elements Playground -->
-    <div class="object-container" id="objectContainer">
-      <!-- 1. The Two Main Tags -->
-      <a class="physics-item tag-pill" data-shape="pill" href="career.html" aria-label="Explore career paths">Career</a>
-      <a class="physics-item tag-pill" data-shape="pill" href="chatbot.html" aria-label="Open the guidance assistant">AI Chatbot</a>
-
-      <!-- 2. Rich Set of Geometric Shapes (Solid & Outlined) -->
-      <!-- Large & Medium Circles -->
-      <div class="physics-item shape-circle-lg" data-shape="circle"></div>
-      <div class="physics-item shape-circle-md" data-shape="circle"></div>
-      <div class="physics-item shape-circle-md" data-shape="circle"></div>
-      <div class="physics-item shape-circle-sm" data-shape="circle"></div>
-      <div class="physics-item shape-circle-sm" data-shape="circle"></div>
-
-      <!-- Rings & Donuts -->
-      <div class="physics-item shape-ring-lg" data-shape="circle"></div>
-      <div class="physics-item shape-ring-md" data-shape="circle"></div>
-      <div class="physics-item shape-donut" data-shape="circle"></div>
-      <div class="physics-item shape-donut" data-shape="circle"></div>
-
-      <!-- Squares & Rounded Cubes -->
-      <div class="physics-item shape-square-lg" data-shape="square"></div>
-      <div class="physics-item shape-square-md" data-shape="square"></div>
-      <div class="physics-item shape-square-md" data-shape="square"></div>
-      <div class="physics-item shape-square-sm" data-shape="square"></div>
-      <div class="physics-item shape-square-sm" data-shape="square"></div>
-
-      <!-- Triangles -->
-      <div class="physics-item shape-triangle" data-shape="triangle">
-        <svg viewBox="0 0 100 100"><polygon points="50,8 92,92 8,92" fill="#ffffff"/></svg>
-      </div>
-      <div class="physics-item shape-triangle" data-shape="triangle">
-        <svg viewBox="0 0 100 100"><polygon points="50,8 92,92 8,92" fill="#ffffff"/></svg>
-      </div>
-      <div class="physics-item shape-triangle-sm" data-shape="triangle">
-        <svg viewBox="0 0 100 100"><polygon points="50,8 92,92 8,92" fill="#ffffff"/></svg>
-      </div>
-
-      <!-- Crosses / Plus Signs -->
-      <div class="physics-item shape-cross" data-shape="circle">
-        <svg viewBox="0 0 100 100">
-          <rect x="38" y="5" width="24" height="90" rx="12" fill="#ffffff" />
-          <rect x="5" y="38" width="90" height="24" rx="12" fill="#ffffff" />
-        </svg>
-      </div>
-      <div class="physics-item shape-cross-sm" data-shape="circle">
-        <svg viewBox="0 0 100 100">
-          <rect x="38" y="5" width="24" height="90" rx="12" fill="#ffffff" />
-          <rect x="5" y="38" width="90" height="24" rx="12" fill="#ffffff" />
-        </svg>
-      </div>
-
-      <!-- Mini Accents (Marbles / Pellets) -->
-      <div class="physics-item shape-dot" data-shape="circle"></div>
-      <div class="physics-item shape-dot" data-shape="circle"></div>
-      <div class="physics-item shape-dot" data-shape="circle"></div>
-      <div class="physics-item shape-dot" data-shape="circle"></div>
+    <div class="site-footer-bottom">
+      <p>© 2026 EduGuidance. All rights reserved.</p>
+      <nav aria-label="Footer links"><a href="index.html#home">Home</a><a href="about.html">About us</a><a href="login.html">Sign in</a></nav>
     </div>
   </footer>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
   <script src="main.js"></script>
+  <script src="career-explorer.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
   <script src="locomotive-init.js"></script>
+  <script src="site-enhancements.js"></script>
 </body>
 </html>
