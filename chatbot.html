@@ -3,13 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="EduGuidance AI chatbot page." />
-  <title>AI Chatbot | Education Guidance</title>
+  <meta name="description" content="Answer a few questions to explore career pathways and entrance exam options across India." />
+  <title>AI Guide | EduGuidance</title>
   <link rel="stylesheet" href="style.css?v=20261022-5" />
+  <link rel="stylesheet" href="chatbot.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
 </head>
 <body data-scroll-container class="chatbot-page">
   <a class="page-home-link" href="index.html#home" aria-label="Return to the top of the home page">← Home</a>
+  <main class="guide-page">
+    <header class="guide-intro">
+      <p class="guide-kicker">YOUR NEXT STEP STARTS HERE</p>
+      <h1>Meet your<br /><em>AI Guide.</em></h1>
+      <p>Tell us what interests you, where you’re based, and what you’re studying. Get a few career paths and entrance routes to explore next.</p>
+      <p class="guide-privacy"><span aria-hidden="true">✳</span> A guided advisor, with no sign-in. Your answers stay in this browser session.</p>
+    </header>
+
+    <section class="guide-chat" aria-label="EduGuidance student advisor">
+      <div class="guide-chat-top">
+        <div><span class="guide-online-dot" aria-hidden="true"></span><strong>EduGuidance advisor</strong><span class="guide-mode">GUIDED SESSION</span></div>
+        <button class="guide-reset" id="guide-reset" type="button">Start over</button>
+      </div>
+      <div class="guide-progress" aria-label="Question progress"><span id="guide-progress-bar"></span></div>
+      <p class="guide-progress-label" id="guide-progress-label">Getting started</p>
+
+      <div class="guide-transcript" id="guide-transcript" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation"></div>
+      <div class="guide-controls" id="guide-controls"></div>
+      <p class="guide-footnote">Suggestions are starting points, not admission or eligibility decisions. Check each official notice for current rules and dates.</p>
+    </section>
+  </main>
   <footer class="site-footer" id="siteFooter">
     <div class="site-footer-main">
       <div class="site-footer-copy">
@@ -31,5 +53,7 @@
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
   <script src="locomotive-init.js"></script>
   <script src="site-enhancements.js"></script>
+  <script src="chatbot.js"></script>
 </body>
 </html>
+
