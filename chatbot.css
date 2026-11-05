@@ -18,7 +18,7 @@
 .guide-progress { height:3px; background:#f1efeb; }
 .guide-progress span { display:block; width:0; height:100%; background:#8a6844; transition:width .25s ease; }
 .guide-progress-label { margin:0; padding:.7rem 1.2rem 0; color:#817a70; font:600 .68rem Inter,sans-serif; letter-spacing:.12em; text-transform:uppercase; }
-.guide-transcript { display:flex; min-height:22rem; max-height:58vh; flex-direction:column; gap:1rem; overflow:auto; padding:1.2rem; scroll-behavior:smooth; }
+.guide-transcript { display:flex; flex-direction:column; gap:1rem; overflow:visible; padding:1.2rem; }
 .guide-message { display:flex; max-width:88%; flex-direction:column; align-items:flex-start; gap:.3rem; animation:guide-enter .22s ease both; }
 .guide-message[data-role="student"] { align-self:flex-end; align-items:flex-end; }
 .guide-message p { margin:0; padding:.9rem 1rem; border:1px solid #e7e4de; border-radius:1rem 1rem 1rem .25rem; background:#f5f3ef; color:#26231f; font-size:.92rem; line-height:1.55; white-space:pre-wrap; overflow-wrap:anywhere; }
@@ -52,7 +52,7 @@
 .guide-footnote { margin:0; padding:.9rem 1.2rem 1.1rem; border-top:1px solid #ece9e3; color:#777168; font-size:.72rem; line-height:1.5; }
 .guide-page button:focus-visible,.guide-page a:focus-visible { outline:3px solid #b4946d; outline-offset:3px; }
 @keyframes guide-enter { from { opacity:0; transform:translateY(5px); } to { opacity:1; transform:translateY(0); } }
-@media(max-width:820px) { .guide-page { grid-template-columns:1fr; gap:1.2rem; width:min(680px,calc(100% - 2rem)); padding-top:6.5rem; } .guide-intro { position:static; padding:.4rem 0; } .guide-intro h1 { margin:.8rem 0 1rem; font-size:clamp(3.5rem,13vw,6rem); } .guide-intro > p:not(.guide-kicker):not(.guide-privacy) { max-width:38rem; } .guide-privacy { margin-top:1rem; } .guide-transcript { max-height:52vh; } }
-@media(max-width:520px) { .guide-page { width:calc(100% - 1rem); padding-top:5.2rem; } .guide-chat { border-radius:1rem; } .guide-chat-top { padding:.8rem; } .guide-chat-top > div { gap:.45rem; font-size:.78rem; } .guide-mode { font-size:.53rem; } .guide-reset { padding:.42rem .55rem; font-size:.7rem; } .guide-transcript { min-height:19rem; padding:.85rem; } .guide-controls { padding:0 .85rem .9rem; } .guide-message { max-width:94%; } .guide-message p { font-size:.86rem; } .guide-option { min-height:2.55rem; padding:.6rem .75rem; font-size:.75rem; } .guide-city-form { flex-direction:column; } .guide-city-form button { min-height:2.7rem; } .guide-footnote { padding:.8rem .85rem; } }
-@media(prefers-reduced-motion:reduce) { .guide-message { animation:none; } .guide-progress span,.guide-option { transition:none; } .guide-transcript { scroll-behavior:auto; } }
+@media(max-width:820px) { .guide-page { grid-template-columns:1fr; gap:1.2rem; width:min(680px,calc(100% - 2rem)); padding-top:6.5rem; } .guide-intro { position:static; padding:.4rem 0; } .guide-intro h1 { margin:.8rem 0 1rem; font-size:clamp(3.5rem,13vw,6rem); } .guide-intro > p:not(.guide-kicker):not(.guide-privacy) { max-width:38rem; } .guide-privacy { margin-top:1rem; } }
+@media(max-width:520px) { .guide-page { width:calc(100% - 1rem); padding-top:5.2rem; } .guide-chat { border-radius:1rem; } .guide-chat-top { padding:.8rem; } .guide-chat-top > div { gap:.45rem; font-size:.78rem; } .guide-mode { font-size:.53rem; } .guide-reset { padding:.42rem .55rem; font-size:.7rem; } .guide-transcript { padding:.85rem; } .guide-controls { padding:0 .85rem .9rem; } .guide-message { max-width:94%; } .guide-message p { font-size:.86rem; } .guide-option { min-height:2.55rem; padding:.6rem .75rem; font-size:.75rem; } .guide-city-form { flex-direction:column; } .guide-city-form button { min-height:2.7rem; } .guide-footnote { padding:.8rem .85rem; } }
+@media(prefers-reduced-motion:reduce) { .guide-message { animation:none; } .guide-progress span,.guide-option { transition:none; } }
 
