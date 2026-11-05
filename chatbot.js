@@ -5,6 +5,7 @@
   const progressBar = document.querySelector("#guide-progress-bar");
   const progressLabel = document.querySelector("#guide-progress-label");
   if (!transcript || !controls || !resetButton || !progressBar || !progressLabel) return;
+  const motionBehavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 
   const states = [
     "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Jammu and Kashmir", "Ladakh", "Lakshadweep", "Puducherry"
@@ -104,7 +105,7 @@
     text.textContent = content;
     message.append(label, text);
     transcript.append(message);
-    transcript.scrollTop = transcript.scrollHeight;
+    message.scrollIntoView({ behavior: motionBehavior, block: "nearest" });
   }
 
   function addRichMessage(role, content) {
@@ -115,7 +116,7 @@
     label.textContent = role === "student" ? "You" : "Guide";
     message.append(label, content);
     transcript.append(message);
-    transcript.scrollTop = transcript.scrollHeight;
+    message.scrollIntoView({ behavior: motionBehavior, block: "nearest" });
   }
 
   function makeButton(label, onClick, className = "guide-option") {
@@ -168,7 +169,7 @@
         onChoose([...selection]);
       }, "guide-continue"));
     }
-    requestAnimationFrame(() => group.querySelector("button")?.focus({ preventScroll: true }));
+    requestAnimationFrame(() => group.querySelector("button")?.focus());
   }
 
   function showError(message) {
@@ -258,7 +259,7 @@
       }
     });
     controls.append(prompt, form);
-    requestAnimationFrame(() => input.focus({ preventScroll: true }));
+    requestAnimationFrame(() => input.focus());
   }
 
   function askState(candidates) {
@@ -304,7 +305,7 @@
       finishRecommendations();
     });
     controls.append(prompt, form);
-    requestAnimationFrame(() => select.focus({ preventScroll: true }));
+    requestAnimationFrame(() => select.focus());
   }
 
   function rankCareers() {
@@ -382,6 +383,7 @@
     careerGroup.className = "guide-result-group";
     const careerHeading = document.createElement("h2");
     careerHeading.textContent = "Career paths to explore";
+    careerHeading.tabIndex = -1;
     const careerList = document.createElement("div");
     careerList.className = "guide-result-list";
     rankedCareers.forEach((career) => careerList.append(makeCard(career.title, `${career.tag}. ${career.reason}`, [{ label: "Explore this career path ↗", href: career.url }])));
@@ -430,7 +432,7 @@
 
     addRichMessage("guide", result);
     controls.replaceChildren(makeButton("Adjust answers and try again", restart, "guide-again"));
-    requestAnimationFrame(() => controls.querySelector("button")?.focus({ preventScroll: true }));
+    requestAnimationFrame(() => careerHeading.focus());
   }
 
   function restart() {
