@@ -4,10 +4,8 @@ EduGuidance is a student-focused website that helps learners explore education a
 
 ## Website
 
-- **Live website (GitHub Pages):** https://kulkarniujesh-max.github.io/EDU-Guidence/
+- **Live website:** https://kulkarniujesh-max.github.io/EDU-Guidence/
 - **GitHub repository:** https://github.com/kulkarniujesh-max/EDU-Guidence
-
-The live link requires GitHub Pages to be enabled for this repository. If it is not available yet, open the project locally using the instructions below.
 
 ## Features
 
